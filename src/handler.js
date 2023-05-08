@@ -59,37 +59,40 @@ const saveBook = (request, h) => {
 };
 
 const showBooks = (request, h) => {
-    const id = nanoid(16);
-    const { name } = request.query;
-
+    const { name, reading, finished } = request.query;
+    
     if (name) { 
-    const response = h.response({
-      status: 'success',
-      data: {
-        books: books.map((book) => ({
-            id: book.id,
-            name: book.name,
-            publisher: book.publisher
-          }))
-      }
-    });
-    response.code(200)
-    return response
-  };
+        book = books.filter((book) => {
+            return book.name.toLowerCase() === name.toLowerCase()
+        });
+    };
+    if (reading === '1' || reading === '0'){
+        book = books.filter((book) => {
+            return book.reading === (reading === '1')
+        });
+    };
+
+    if (finished === '1' || finished === '0'){
+        book = books.filter((book) => {
+            return book.finished === (finished === '1')
+        });
+    };
+
 
     const response = h.response({
         status: "success",
         data: {
             books: books.map((book) => ({
-                id: books.id,
-                name: books.name,
-                publisher: books.publisher
+                id: book.id,
+                name: book.name,
+                publisher: book.publisher
             }))
         }
     });
     response.code(200);
     return response;
 };
+    
 
 const bookDetails = (request, h) => {
     const { bookId } = request.params;
