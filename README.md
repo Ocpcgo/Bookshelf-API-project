@@ -56,5 +56,5 @@ Request body sample:
 ### Delete /books/{bookId}
 Delete a book from the database.
 
-## License and Acknowledgements
-This project is part of the Dicoding Back End bootcamp and is licensed under the MIT License.
+## Acknowledgements
+This project was created as part of the Dicoding Academy "Belajar Membuat Aplikasi Backend untuk Pemula" course.
